@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import PokemonCard from './PokemonCard';
 import './pokemonpage.css'
@@ -6,10 +6,10 @@ import { fetchData } from '../utils/utils';
 
 function PokemonPage() {
     const URL = 'https://pokeapi.co/api/v2/pokemon?limit=10&offset=0'
-
-    const fetchPokemons = async () => {
+        
+    const fetchPokemons = useCallback(async () => {
         return await fetchData(URL);
-    };
+    }, [URL]);
 
     const { data, error, isLoading } = useQuery({
         queryKey: ['pokemons'],

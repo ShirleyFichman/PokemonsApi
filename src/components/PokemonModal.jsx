@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useCallback } from 'react';
 
 function PokemonModal({ url, onClose }) {
-    const fetchAbilities = React.useCallback(async () => {
+    const fetchAbilities = useCallback(async () => {
         const jsonResponse = await fetchData(url);
         return jsonResponse.abilities;
     }, [url]);
