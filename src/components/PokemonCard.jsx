@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import PokemonModal from  './PokemonModal';
+import { fetchData } from '../utils/utils';
 
 function PokemonCard({ name, url }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const fetchImage = async () => {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const jsonResponse = await response.json();
-    console.log("response:", jsonResponse.sprites.front_default);
+    const jsonResponse = await fetchData(url);
     return jsonResponse.sprites.front_default;
   };
 

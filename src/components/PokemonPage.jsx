@@ -8,7 +8,7 @@ function PokemonPage() {
     const URL = 'https://pokeapi.co/api/v2/pokemon?limit=10&offset=0'
 
     const fetchPokemons = async () => {
-        fetchData(URL);
+        return await fetchData(URL);
     };
 
     const { data, error, isLoading } = useQuery({

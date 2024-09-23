@@ -1,18 +1,15 @@
 import React from 'react';
-import '../styles/modal.css'; // Ensure this path is correct based on your project structure
-
+import '../styles/modal.css'; 
+import { fetchData } from '../utils/utils';
 import { useQuery } from '@tanstack/react-query';
+import { useCallback } from 'react';
 
 function PokemonModal({ url, onClose }) {
-    const fetchAbilities = async () => {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const jsonResponse = await response.json();
+    const fetchAbilities = React.useCallback(async () => {
+        const jsonResponse = await fetchData(url);
         return jsonResponse.abilities;
-    };
-
+    }, [url]);
+    
     const { data: abilities, error, isLoading } = useQuery({
         queryKey: ['abilities', url],
         queryFn: fetchAbilities,
