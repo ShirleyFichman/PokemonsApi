@@ -1,8 +1,8 @@
 import React from 'react';
-import '../styles/modal.css'; 
 import { fetchData } from '../utils/utils';
 import { useQuery } from '@tanstack/react-query';
 import { useCallback } from 'react';
+import '../styles/modal.css'; 
 
 function PokemonModal({ url, onClose }) {
     const fetchAbilities = useCallback(async () => {
